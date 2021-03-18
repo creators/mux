@@ -6,7 +6,7 @@ _dir=${_this%/*}
 
 : "${INVENTORY:=$_dir/prj}"
 
-declare -A __o
+declare -a __o
 
 main () {
     # mapfile -t files < <(find "$INVENTORY" -type f) #linux
@@ -57,9 +57,12 @@ parse_yaml() {
 }
 
 ___printlist() {
-    ERM "LIST"
-    mapfile -t files < <(find "$INVENTORY" -type f) #linux
-    ERM $files
+    for prj in `ls $INVENTORY/*.sh`;
+    do
+        prj=`basename $prj`
+        prj=${prj%%.sh}
+        echo $prj
+    done
     exit
 }
 

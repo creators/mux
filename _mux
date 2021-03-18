@@ -1,0 +1,13 @@
+#compdef mux
+
+_mux() {
+    local -a list
+    # list=($(ls $HOME/etc/mux/prj/*.sh))
+    # list=(${list:r:t})
+    list=($(mux -l))
+    _describe -t list 'projects' list
+
+    return 0
+}
+
+_mux
